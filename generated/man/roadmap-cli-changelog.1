@@ -1,0 +1,25 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH changelog 1  "changelog " 
+.SH NAME
+changelog \- Générer un changelog depuis les commits git
+.SH SYNOPSIS
+\fBchangelog\fR [\fB\-\-limit\fR] [\fB\-\-from\fR] [\fB\-\-to\fR] [\fB\-\-format\fR] [\fB\-h\fR|\fB\-\-help\fR] 
+.SH DESCRIPTION
+Générer un changelog depuis les commits git
+.SH OPTIONS
+.TP
+\fB\-\-limit\fR \fI<LIMIT>\fR [default: 50]
+Nombre de commits à inclure (défaut: 50)
+.TP
+\fB\-\-from\fR \fI<FROM>\fR
+Tag de départ (ex: v0.1.0)
+.TP
+\fB\-\-to\fR \fI<TO>\fR
+Tag de fin (défaut: HEAD)
+.TP
+\fB\-\-format\fR \fI<FORMAT>\fR [default: markdown]
+Format de sortie (markdown, json)
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help

@@ -1,0 +1,209 @@
+id: '21'
+name: Gestion d'incidents (bugs)
+description: Commande roadmap bug pour déclarer, suivre et résoudre les incidents. Stockage YAML, intégré au report/show/doctor/log.
+priority: 19
+status: done
+parent: null
+created_at: 2026-05-03
+updated_at: 2026-05-07
+workflow: null
+tasks:
+- id: '21.1'
+  name: Modèle Bug (severity, status, phase, assignee, description, resolution)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - feature
+- id: '21.2'
+  name: Stockage .phases/bugs.yml
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - feature
+- id: '21.3'
+  name: roadmap bug add
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.4'
+  name: roadmap bug list (+ filtres --severity, --status)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.5'
+  name: roadmap bug show <id>
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.6'
+  name: roadmap bug resolve <id>
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.7'
+  name: Intégration report (bugs ouverts par sévérité)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.8'
+  name: Intégration show (bugs liés à une phase)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.9'
+  name: Intégration doctor (cohérence bugs ↔ phases)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.10'
+  name: Intégration log (résolutions dans historique)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - cli
+- id: '21.11'
+  name: 'Cross-projet: roadmap bug add --target (local path ou slug API)'
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-03
+  tags:
+  - feature
+  - cross-projet
+- id: '21.12'
+  name: Cross-projet via API SaaS (roadmap bug add --target slug-projet)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - cross-projet
+  - saas
+- id: '21.13'
+  name: API endpoint POST /api/v1/projects/:slug/bugs
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - api
+  - saas
+- id: '21.14'
+  name: Affichage bugs dans le frontend web (liste, filtres, detail)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - ui
+  - saas
+- id: '21.15'
+  name: Notification cross-projet (projet A signale un bug dans projet B)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - saas
+- id: '21.16'
+  name: roadmap feature add/list/show/resolve (feature requests)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-07
+  tags:
+  - feature
+  - cli
+- id: '21.17'
+  name: Stockage .phases/features.yml
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-07
+  tags:
+  - feature
+- id: '21.18'
+  name: 'Cross-projet: roadmap feature add --target'
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-07
+  tags:
+  - feature
+  - cross-projet
+- id: '21.19'
+  name: Intégrations report/show/doctor/log pour features
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-05-07
+  tags:
+  - cli
+notes: []

@@ -1,0 +1,50 @@
+//! Command modules for the roadmap CLI
+
+pub mod init;
+pub mod add;
+pub mod list;
+pub mod show;
+pub mod task;
+pub mod status;
+pub mod export;
+pub mod report;
+pub mod workflow;
+pub mod next;
+pub mod context;
+pub mod scan;
+pub mod coverage;
+pub mod changelog;
+pub mod doctor;
+pub mod hooks;
+pub mod sync;
+pub mod template;
+pub mod log;
+pub mod search;
+pub mod bug;
+pub mod feature;
+pub mod generate;
+
+// Re-export all command functions for convenience
+pub use init::cmd_init;
+pub use add::{cmd_add, cmd_edit, cmd_priority, cmd_note};
+pub use list::{cmd_list, cmd_tree};
+pub use show::cmd_show;
+pub use task::{cmd_task_add, cmd_task_done, cmd_task_start, cmd_task_edit, cmd_task_move, cmd_task_blocks, cmd_task_unblocks};
+pub use status::cmd_status;
+pub use export::cmd_export;
+pub use report::cmd_report;
+pub use workflow::cmd_workflow;
+pub use next::cmd_next;
+pub use context::cmd_context;
+pub use scan::cmd_scan;
+pub use coverage::cmd_coverage;
+pub use changelog::cmd_changelog;
+pub use doctor::cmd_doctor;
+pub use hooks::cmd_hooks;
+pub use sync::cmd_sync;
+pub use template::cmd_template;
+pub use log::cmd_log;
+pub use search::cmd_search;
+pub use bug::{cmd_bug_add, cmd_bug_list, cmd_bug_show, cmd_bug_resolve, cmd_bug_update};
+pub use feature::{cmd_feature_add, cmd_feature_list, cmd_feature_show, cmd_feature_implement, cmd_feature_update};
+pub use generate::{cmd_generate, GenerateType};

@@ -1,0 +1,88 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH roadmap 1  "roadmap 0.1.0" 
+.SH NAME
+roadmap \- CLI pour gérer les roadmaps projet
+.SH SYNOPSIS
+\fBroadmap\fR [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR] <\fIsubcommands\fR>
+.SH DESCRIPTION
+CLI pour gérer les roadmaps projet
+.SH OPTIONS
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Print version
+.SH SUBCOMMANDS
+.TP
+roadmap\-init(1)
+Initialiser une roadmap dans le projet courant
+.TP
+roadmap\-add(1)
+Ajouter une nouvelle phase
+.TP
+roadmap\-edit(1)
+Modifier une phase
+.TP
+roadmap\-list(1)
+Lister toutes les phases
+.TP
+roadmap\-tree(1)
+Afficher l\*(Aqarborescence complète
+.TP
+roadmap\-show(1)
+Afficher les détails d\*(Aqune phase
+.TP
+roadmap\-task(1)
+Gérer les tâches
+.TP
+roadmap\-priority(1)
+Changer la priorité d\*(Aqune phase
+.TP
+roadmap\-status(1)
+Changer le statut d\*(Aqune phase
+.TP
+roadmap\-note(1)
+Ajouter une note à une phase
+.TP
+roadmap\-export(1)
+Générer les fichiers Markdown
+.TP
+roadmap\-report(1)
+Rapport de progression (vue planning)
+.TP
+roadmap\-workflow(1)
+Gérer le workflow d\*(Aqune tâche
+.TP
+roadmap\-ui(1)
+Interface interactive (TUI)
+.TP
+roadmap\-serve(1)
+Lancer le serveur web
+.TP
+roadmap\-update(1)
+Mettre à jour roadmap\-cli
+.TP
+roadmap\-next(1)
+Afficher la prochaine tâche à faire
+.TP
+roadmap\-context(1)
+Contexte complet pour LLM (optimisé pour AI assistants)
+.TP
+roadmap\-scan(1)
+Scanner le code pour trouver les TODO/FIXME
+.TP
+roadmap\-coverage(1)
+Analyser la couverture API (routes backend vs appels frontend)
+.TP
+roadmap\-changelog(1)
+Générer un changelog depuis les commits git
+.TP
+roadmap\-generate(1)
+Générer les fichiers man et completions shell
+.TP
+roadmap\-help(1)
+Print this message or the help of the given subcommand(s)
+.SH VERSION
+v0.1.0

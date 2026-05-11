@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="kanban-header">
+    <h1>Vue Kanban</h1>
+</div>
+
+<div class="kanban-board">
+    <div class="kanban-column" data-status="pending">
+        <div class="kanban-column-header pending">
+            <span class="column-icon">&#x2B1C;</span>
+            <h2>A faire</h2>
+            <span class="column-count">{{ phases_pending.len() }}</span>
+        </div>
+        <div class="kanban-cards">
+            {% for phase in phases_pending %}
+            {% include "partials/phase_card.html" %}
+            {% endfor %}
+            {% if phases_pending.is_empty() %}
+            <div class="kanban-empty">Aucune phase</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="kanban-column" data-status="in_progress">
+        <div class="kanban-column-header in-progress">
+            <span class="column-icon">&#x1F504;</span>
+            <h2>En cours</h2>
+            <span class="column-count">{{ phases_in_progress.len() }}</span>
+        </div>
+        <div class="kanban-cards">
+            {% for phase in phases_in_progress %}
+            {% include "partials/phase_card.html" %}
+            {% endfor %}
+            {% if phases_in_progress.is_empty() %}
+            <div class="kanban-empty">Aucune phase</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="kanban-column" data-status="done">
+        <div class="kanban-column-header done">
+            <span class="column-icon">&#x2705;</span>
+            <h2>Termine</h2>
+            <span class="column-count">{{ phases_done.len() }}</span>
+        </div>
+        <div class="kanban-cards">
+            {% for phase in phases_done %}
+            {% include "partials/phase_card.html" %}
+            {% endfor %}
+            {% if phases_done.is_empty() %}
+            <div class="kanban-empty">Aucune phase</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="kanban-column" data-status="blocked">
+        <div class="kanban-column-header blocked">
+            <span class="column-icon">&#x1F6AB;</span>
+            <h2>Bloque</h2>
+            <span class="column-count">{{ phases_blocked.len() }}</span>
+        </div>
+        <div class="kanban-cards">
+            {% for phase in phases_blocked %}
+            {% include "partials/phase_card.html" %}
+            {% endfor %}
+            {% if phases_blocked.is_empty() %}
+            <div class="kanban-empty">Aucune phase</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.kanban-card');
+    const columns = document.querySelectorAll('.kanban-column');
+
+    cards.forEach(card => {
+        card.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('text/plain', card.dataset.phaseId);
+            card.classList.add('dragging');
+            // Prevent navigation on drag
+            e.dataTransfer.effectAllowed = 'move';
+        });
+
+        card.addEventListener('dragend', () => {
+            card.classList.remove('dragging');
+            columns.forEach(col => col.classList.remove('drag-over'));
+        });
+
+        // Prevent click navigation during drag
+        let isDragging = false;
+        card.addEventListener('mousedown', () => { isDragging = false; });
+        card.addEventListener('mousemove', () => { isDragging = true; });
+        card.addEventListener('click', e => {
+            if (isDragging) e.preventDefault();
+        });
+    });
+
+    columns.forEach(column => {
+        column.addEventListener('dragover', e => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            column.classList.add('drag-over');
+        });
+
+        column.addEventListener('dragleave', e => {
+            if (!column.contains(e.relatedTarget)) {
+                column.classList.remove('drag-over');
+            }
+        });
+
+        column.addEventListener('drop', async e => {
+            e.preventDefault();
+            column.classList.remove('drag-over');
+
+            const phaseId = e.dataTransfer.getData('text/plain');
+            const newStatus = column.dataset.status;
+
+            if (!phaseId || !newStatus) return;
+
+            try {
+                const resp = await fetch(`/api/phases/${phaseId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus }),
+                });
+
+                if (resp.ok) {
+                    location.reload();
+                } else {
+                    const data = await resp.json();
+                    console.error('Erreur:', data.error);
+                }
+            } catch (err) {
+                console.error('Erreur réseau:', err);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

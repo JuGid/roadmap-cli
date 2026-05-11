@@ -1,0 +1,22 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH add 1  "add " 
+.SH NAME
+add \- Ajouter une nouvelle phase
+.SH SYNOPSIS
+\fBadd\fR [\fB\-\-parent\fR] [\fB\-h\fR|\fB\-\-help\fR] <\fIID\fR> <\fINAME\fR> 
+.SH DESCRIPTION
+Ajouter une nouvelle phase
+.SH OPTIONS
+.TP
+\fB\-\-parent\fR \fI<PARENT>\fR
+Phase parente (pour les sous\-phases)
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help
+.TP
+<\fIID\fR>
+ID de la phase (ex: 9, 19a)
+.TP
+<\fINAME\fR>
+Nom de la phase

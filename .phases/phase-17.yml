@@ -1,0 +1,93 @@
+id: '17'
+name: Frontend SaaS (Next.js)
+description: 'Application web SaaS: Next.js + shadcn/ui + Tailwind. Consomme l''API REST axum.'
+priority: 13
+status: done
+parent: null
+created_at: 2026-04-19
+updated_at: 2026-04-19
+workflow: null
+depends_on:
+- '12'
+tasks:
+- id: '17.1'
+  name: Setup Next.js + TypeScript + Tailwind + shadcn/ui
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.2'
+  name: Auth pages (login, register, forgot password)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.3'
+  name: Layout principal (sidebar, header, org/project switcher)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.4'
+  name: Dashboard projets
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.5'
+  name: Vue Kanban (drag & drop react-beautiful-dnd)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.6'
+  name: Vue phases (liste + detail)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.7'
+  name: Gestion taches (create, edit, status, assignee, tags)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.8'
+  name: Page settings projet
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.9'
+  name: Page membres organisation
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '17.10'
+  name: Notifications + activité
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+notes: []

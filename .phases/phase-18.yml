@@ -1,0 +1,237 @@
+id: '18'
+name: UI/UX Web — Identité & Polish
+description: Interface web soignée avec identité propre. Dark-first, command palette, terminal intégré.
+priority: 16
+status: in_progress
+parent: null
+created_at: 2026-04-19
+updated_at: 2026-04-19
+workflow: null
+depends_on:
+- '17'
+tasks:
+- id: '18.1'
+  name: Design system — palette couleurs, typographie, espacements
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+  - design
+- id: '18.2'
+  name: Dark mode par défaut (esthétique code editor)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.3'
+  name: Command palette Cmd+K (navigation, actions, search)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - ui
+  - feature
+- id: '18.4'
+  name: Terminal panel rétractable (montre commandes CLI équivalentes)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - ui
+  - feature
+  - identite
+- id: '18.5'
+  name: Sidebar responsive (collapse, mobile)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.6'
+  name: Kanban drag & drop réel (dnd-kit ou react-beautiful-dnd)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+- id: '18.7'
+  name: Animations et transitions (framer-motion)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - ui
+- id: '18.8'
+  name: Notifications toast (sonner)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.9'
+  name: Breadcrumb navigation
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.10'
+  name: Favicon + meta + OG tags
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.11'
+  name: Toggle dark/light mode (next-themes)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.12'
+  name: Avatar utilisateur + dropdown menu (profil, settings, logout)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - ui
+- id: '18.13'
+  name: Flow login CLI → navigateur (OAuth device flow)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - auth
+- id: '18.14'
+  name: Page web /auth/cli — autorisation CLI
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - auth
+- id: '18.15'
+  name: Commande roadmap login / logout
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - auth
+- id: '18.16'
+  name: Stockage credentials ~/.roadmap/credentials.json
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - auth
+- id: '18.17'
+  name: roadmap push utilise le token stocké au lieu du .env
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - auth
+- id: '18.18'
+  name: Onboarding web (wizard multi-step après première connexion)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - ui
+  - feature
+- id: '18.19'
+  name: roadmap init interactif (templates statuts, config)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - cli
+- id: '18.20'
+  name: Statuts dynamiques depuis config.yml (CLI + Web)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+- id: '18.21'
+  name: Colonnes Kanban dynamiques depuis config projet
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - ui
+notes:
+- date: 2026-04-19
+  content: L'identité de l'app doit transpirer le CLI-first / dev-native. Le terminal panel intégré est le différenciateur clé vs Linear/Jira/Plane.

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <a href="/phases" class="back-link">&larr; Retour aux phases</a>
+    <h1>
+        {% if phase.status == "done" %}
+        <span class="status-icon">&#x2705;</span>
+        {% else if phase.status == "in_progress" %}
+        <span class="status-icon">&#x1F504;</span>
+        {% else if phase.status == "blocked" %}
+        <span class="status-icon">&#x1F6AB;</span>
+        {% else %}
+        <span class="status-icon">&#x2B1C;</span>
+        {% endif %}
+        Phase {{ phase.id }} &mdash; {{ phase.name }}
+    </h1>
+</div>
+
+<div class="phase-meta">
+    <div class="meta-item">
+        <span class="meta-label">Priorite</span>
+        <span class="meta-value">{{ phase.priority }}</span>
+    </div>
+    <div class="meta-item">
+        <span class="meta-label">Statut</span>
+        <span class="meta-value status-{{ phase.status }}">{{ phase.status }}</span>
+    </div>
+    {% if phase.tasks_total > 0 %}
+    <div class="meta-item">
+        <span class="meta-label">Progression</span>
+        <span class="meta-value">{{ phase.tasks_done }}/{{ phase.tasks_total }} taches</span>
+    </div>
+    {% endif %}
+</div>
+
+{% if !phase.description.is_empty() %}
+<div class="phase-description">
+    <p>{{ phase.description }}</p>
+</div>
+{% endif %}
+
+{% if !tasks.is_empty() %}
+<section class="tasks-section">
+    <h2>Taches</h2>
+    <ul class="tasks-list">
+        {% for task in tasks %}
+        <li class="task-item">
+            <span class="task-status">
+                {% if task.status == "done" %}
+                <span class="status-icon done">&#x2705;</span>
+                {% else if task.status == "in_progress" %}
+                <span class="status-icon in-progress">&#x1F504;</span>
+                {% else if task.status == "blocked" %}
+                <span class="status-icon blocked">&#x1F6AB;</span>
+                {% else %}
+                <span class="status-icon pending">&#x2B1C;</span>
+                {% endif %}
+            </span>
+            <span class="task-id">{{ task.id }}</span>
+            <span class="task-name">{{ task.name }}</span>
+            {% if task.optional %}
+            <span class="task-optional">(optionnel)</span>
+            {% endif %}
+            {% if let Some(stage) = task.workflow_stage %}
+            <span class="task-stage">[{{ stage }}]</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+{% if !notes.is_empty() %}
+<section class="notes-section">
+    <h2>Notes</h2>
+    <ul class="notes-list">
+        {% for note in notes %}
+        <li class="note-item">
+            <span class="note-date">{{ note.date }}</span>
+            <span class="note-content">{{ note.content }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+{% endblock %}

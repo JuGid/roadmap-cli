@@ -11,8 +11,9 @@ CLI pour gérer les roadmaps projet
 | 1 | MVP | ✅ | 1 | 4/4 |
 | 2 | Interface & Formats | ✅ | 2 | 5/5 |
 | 3 | Documentation | ✅ | 3 | 6/6 |
-| 4 | Distribution | 🔄 | 4 | 4/7 |
+| 4 | Distribution | ✅ | 4 | 6/7 |
 | 5 | Améliorations | ⬜ | 5 | 0/5 |
+| 7 | Interface Web | ⬜ | 6 | 0/12 |
 | 6 | Intégrations | ⬜ | 10 | 0/4 |
 
 ---
@@ -61,7 +62,7 @@ CLI pour gérer les roadmaps projet
 
 ---
 
-## Phase 4 — Distribution 🔄
+## Phase 4 — Distribution ✅
 
 ### Tâches
 
@@ -69,8 +70,8 @@ CLI pour gérer les roadmaps projet
 - ✅ **4.2** — Script d'installation
 - ✅ **4.3** — GitHub Actions (CI/CD)
 - ✅ **4.4** — Homebrew formula
-- ⬜ **4.5** — Créer repo GitHub
-- ⬜ **4.6** — Première release (v0.1.0)
+- ✅ **4.5** — Créer repo GitHub
+- ✅ **4.6** — Première release (v0.1.0)
 - ⬜ **4.7** — Créer homebrew-tap
 
 ### Notes
@@ -88,6 +89,29 @@ CLI pour gérer les roadmaps projet
 - ⬜ **5.3** — Assignation (--assignee)
 - ⬜ **5.4** — Dépendances (--blocks)
 - ⬜ **5.5** — Due dates (--due)
+
+---
+
+## Phase 7 — Interface Web ⬜
+
+### Tâches
+
+- ⬜ **7.1** — Setup serveur axum
+- ⬜ **7.2** — Intégration rust-embed
+- ⬜ **7.3** — Templates Askama
+- ⬜ **7.4** — Vue Kanban
+- ⬜ **7.5** — Vue phases
+- ⬜ **7.6** — Page détail phase
+- ⬜ **7.7** — Commande roadmap serve
+- ⬜ **7.8** — Drag & drop HTMX
+- ⬜ **7.9** — Édition inline *(optionnel)*
+- ⬜ **7.10** — Création tâches *(optionnel)*
+- ⬜ **7.11** — Mode lecture seule *(optionnel)*
+- ⬜ **7.12** — Auto-refresh WebSocket *(optionnel)*
+
+### Notes
+
+- **2026-03-05** : Stack: axum + HTMX + Askama + rust-embed
 
 ---
 

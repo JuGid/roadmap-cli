@@ -1,0 +1,53 @@
+id: '16'
+name: DX & Robustesse — validation, tags, édition, dépendances phases
+description: ''
+priority: 3
+status: done
+parent: null
+created_at: 2026-04-08
+updated_at: 2026-04-19
+workflow: null
+tasks:
+- id: '16.1'
+  name: Commande doctor/validate — vérifie intégrité YAML (champs dupliqués, types, refs)
+  description: Vérifie parsing YAML, statuts valides, refs croisées, doublons d'IDs
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '16.2'
+  name: task edit --desc — modifier la description d une tâche en CLI
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '16.3'
+  name: Tags/labels sur les tâches — --tag rendering,interaction pour filtrer par domaine
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '16.4'
+  name: Dépendances entre phases — --depends-on pour documenter les pré-requis
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '16.5'
+  name: Filtre par tag — roadmap list --tag interaction pour voir les tâches d un domaine
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+notes:
+- date: 2026-04-08
+  content: 'Feedback d utilisation sur siovos-canvas-engine: YAML cassé (champs dupliqués) pas détecté, pas de moyen de modifier la description d une tâche, besoin de tags pour filtrer les tâches par domaine (rendering/interaction/data-model), et dépendances entre phases pour documenter l ordre.'

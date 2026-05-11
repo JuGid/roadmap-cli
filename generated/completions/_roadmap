@@ -1,0 +1,911 @@
+#compdef roadmap
+
+autoload -U is-at-least
+
+_roadmap() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_roadmap_commands" \
+"*::: :->roadmap" \
+&& ret=0
+    case $state in
+    (roadmap)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:roadmap-command-$line[1]:"
+        case $line[1] in
+            (init)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" : \
+'--parent=[Phase parente (pour les sous-phases)]:PARENT:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase (ex\: 9, 19a):_default' \
+':name -- Nom de la phase:_default' \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+'--name=[Nouveau nom]:NAME:_default' \
+'--description=[Nouvelle description]:DESCRIPTION:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase:_default' \
+&& ret=0
+;;
+(list)
+_arguments "${_arguments_options[@]}" : \
+'--table[Afficher en tableau formaté]' \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(tree)
+_arguments "${_arguments_options[@]}" : \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(show)
+_arguments "${_arguments_options[@]}" : \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase:_default' \
+&& ret=0
+;;
+(task)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_roadmap__task_commands" \
+"*::: :->task" \
+&& ret=0
+
+    case $state in
+    (task)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:roadmap-task-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" : \
+'--parent=[Tâche parente (pour les sous-tâches)]:PARENT:_default' \
+'*--files=[Fichiers liés à cette tâche]:FILES:_default' \
+'--optional[Marquer comme optionnelle]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':phase_id -- ID de la phase:_default' \
+':name -- Nom de la tâche:_default' \
+&& ret=0
+;;
+(done)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche (ex\: 9.1, 9.2.1):_default' \
+&& ret=0
+;;
+(start)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche:_default' \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+'--name=[Nouveau nom]:NAME:_default' \
+'--description=[Nouvelle description]:DESCRIPTION:_default' \
+'--optional=[Marquer comme optionnelle]:OPTIONAL:(true false)' \
+'*--files=[Fichiers liés à cette tâche (remplace les existants)]:FILES:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche:_default' \
+&& ret=0
+;;
+(move)
+_arguments "${_arguments_options[@]}" : \
+'--to=[Phase de destination]:TO_PHASE:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche:_default' \
+&& ret=0
+;;
+(blocks)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche bloquante:_default' \
+':blocked_id -- ID de la tâche bloquée:_default' \
+&& ret=0
+;;
+(unblocks)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche bloquante:_default' \
+':blocked_id -- ID de la tâche à débloquer:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_roadmap__task__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:roadmap-task-help-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(done)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(start)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(move)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(blocks)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unblocks)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(priority)
+_arguments "${_arguments_options[@]}" : \
+'--set=[Nouvelle priorité (1 = haute)]:SET:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase:_default' \
+&& ret=0
+;;
+(status)
+_arguments "${_arguments_options[@]}" : \
+'--set=[Nouveau statut (pending, in_progress, done, blocked)]:SET:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase:_default' \
+&& ret=0
+;;
+(note)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':id -- ID de la phase:_default' \
+':content -- Contenu de la note:_default' \
+&& ret=0
+;;
+(export)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(report)
+_arguments "${_arguments_options[@]}" : \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(workflow)
+_arguments "${_arguments_options[@]}" : \
+'--set=[Forcer une étape spécifique]:SET:_default' \
+'--advance[Avancer à l'\''étape suivante]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':task_id -- ID de la tâche:_default' \
+&& ret=0
+;;
+(ui)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(serve)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Port du serveur (défaut\: 7878)]:PORT:_default' \
+'--port=[Port du serveur (défaut\: 7878)]:PORT:_default' \
+'--open[Ouvrir le navigateur automatiquement]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+'--check[Vérifier seulement, sans installer]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(next)
+_arguments "${_arguments_options[@]}" : \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(context)
+_arguments "${_arguments_options[@]}" : \
+'--include-done[Inclure les tâches terminées]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(scan)
+_arguments "${_arguments_options[@]}" : \
+'--glob=[Pattern glob pour filtrer les fichiers (défaut\: **/*.rs)]:GLOB:_default' \
+'--phase=[Phase cible pour les tâches créées]:PHASE:_default' \
+'--create[Créer des tâches automatiquement]' \
+'--hidden[Inclure les répertoires cachés]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(coverage)
+_arguments "${_arguments_options[@]}" : \
+'-b+[Pattern glob pour les fichiers backend (ex\: src/api/**/*.ts)]:BACKEND:_default' \
+'--backend=[Pattern glob pour les fichiers backend (ex\: src/api/**/*.ts)]:BACKEND:_default' \
+'-f+[Pattern glob pour les fichiers frontend (ex\: src/app/**/*.tsx)]:FRONTEND:_default' \
+'--frontend=[Pattern glob pour les fichiers frontend (ex\: src/app/**/*.tsx)]:FRONTEND:_default' \
+'--prefix=[Préfixe des routes API (défaut\: /api)]:PREFIX:_default' \
+'--json[Sortie JSON]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(changelog)
+_arguments "${_arguments_options[@]}" : \
+'--limit=[Nombre de commits à inclure (défaut\: 50)]:LIMIT:_default' \
+'--from=[Tag de départ (ex\: v0.1.0)]:FROM:_default' \
+'--to=[Tag de fin (défaut\: HEAD)]:TO:_default' \
+'--format=[Format de sortie (markdown, json)]:FORMAT:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(generate)
+_arguments "${_arguments_options[@]}" : \
+'-o+[Répertoire de sortie (défaut\: ./generated)]:OUTPUT:_default' \
+'--output=[Répertoire de sortie (défaut\: ./generated)]:OUTPUT:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':what -- Type\: man, completions, all:((man\:"Pages man"
+completions\:"Completions shell (bash, zsh, fish)"
+all\:"Tout générer"))' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_roadmap__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:roadmap-help-command-$line[1]:"
+        case $line[1] in
+            (init)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(list)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(tree)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(show)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(task)
+_arguments "${_arguments_options[@]}" : \
+":: :_roadmap__help__task_commands" \
+"*::: :->task" \
+&& ret=0
+
+    case $state in
+    (task)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:roadmap-help-task-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(done)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(start)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(move)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(blocks)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unblocks)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(priority)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(status)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(note)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(export)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(report)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(workflow)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(ui)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(serve)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(next)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(context)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(scan)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(coverage)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(changelog)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(generate)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_roadmap_commands] )) ||
+_roadmap_commands() {
+    local commands; commands=(
+'init:Initialiser une roadmap dans le projet courant' \
+'add:Ajouter une nouvelle phase' \
+'edit:Modifier une phase' \
+'list:Lister toutes les phases' \
+'tree:Afficher l'\''arborescence complète' \
+'show:Afficher les détails d'\''une phase' \
+'task:Gérer les tâches' \
+'priority:Changer la priorité d'\''une phase' \
+'status:Changer le statut d'\''une phase' \
+'note:Ajouter une note à une phase' \
+'export:Générer les fichiers Markdown' \
+'report:Rapport de progression (vue planning)' \
+'workflow:Gérer le workflow d'\''une tâche' \
+'ui:Interface interactive (TUI)' \
+'serve:Lancer le serveur web' \
+'update:Mettre à jour roadmap-cli' \
+'next:Afficher la prochaine tâche à faire' \
+'context:Contexte complet pour LLM (optimisé pour AI assistants)' \
+'scan:Scanner le code pour trouver les TODO/FIXME' \
+'coverage:Analyser la couverture API (routes backend vs appels frontend)' \
+'changelog:Générer un changelog depuis les commits git' \
+'generate:Générer les fichiers man et completions shell' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'roadmap commands' commands "$@"
+}
+(( $+functions[_roadmap__add_commands] )) ||
+_roadmap__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap add commands' commands "$@"
+}
+(( $+functions[_roadmap__changelog_commands] )) ||
+_roadmap__changelog_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap changelog commands' commands "$@"
+}
+(( $+functions[_roadmap__context_commands] )) ||
+_roadmap__context_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap context commands' commands "$@"
+}
+(( $+functions[_roadmap__coverage_commands] )) ||
+_roadmap__coverage_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap coverage commands' commands "$@"
+}
+(( $+functions[_roadmap__edit_commands] )) ||
+_roadmap__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap edit commands' commands "$@"
+}
+(( $+functions[_roadmap__export_commands] )) ||
+_roadmap__export_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap export commands' commands "$@"
+}
+(( $+functions[_roadmap__generate_commands] )) ||
+_roadmap__generate_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap generate commands' commands "$@"
+}
+(( $+functions[_roadmap__help_commands] )) ||
+_roadmap__help_commands() {
+    local commands; commands=(
+'init:Initialiser une roadmap dans le projet courant' \
+'add:Ajouter une nouvelle phase' \
+'edit:Modifier une phase' \
+'list:Lister toutes les phases' \
+'tree:Afficher l'\''arborescence complète' \
+'show:Afficher les détails d'\''une phase' \
+'task:Gérer les tâches' \
+'priority:Changer la priorité d'\''une phase' \
+'status:Changer le statut d'\''une phase' \
+'note:Ajouter une note à une phase' \
+'export:Générer les fichiers Markdown' \
+'report:Rapport de progression (vue planning)' \
+'workflow:Gérer le workflow d'\''une tâche' \
+'ui:Interface interactive (TUI)' \
+'serve:Lancer le serveur web' \
+'update:Mettre à jour roadmap-cli' \
+'next:Afficher la prochaine tâche à faire' \
+'context:Contexte complet pour LLM (optimisé pour AI assistants)' \
+'scan:Scanner le code pour trouver les TODO/FIXME' \
+'coverage:Analyser la couverture API (routes backend vs appels frontend)' \
+'changelog:Générer un changelog depuis les commits git' \
+'generate:Générer les fichiers man et completions shell' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'roadmap help commands' commands "$@"
+}
+(( $+functions[_roadmap__help__add_commands] )) ||
+_roadmap__help__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help add commands' commands "$@"
+}
+(( $+functions[_roadmap__help__changelog_commands] )) ||
+_roadmap__help__changelog_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help changelog commands' commands "$@"
+}
+(( $+functions[_roadmap__help__context_commands] )) ||
+_roadmap__help__context_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help context commands' commands "$@"
+}
+(( $+functions[_roadmap__help__coverage_commands] )) ||
+_roadmap__help__coverage_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help coverage commands' commands "$@"
+}
+(( $+functions[_roadmap__help__edit_commands] )) ||
+_roadmap__help__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help edit commands' commands "$@"
+}
+(( $+functions[_roadmap__help__export_commands] )) ||
+_roadmap__help__export_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help export commands' commands "$@"
+}
+(( $+functions[_roadmap__help__generate_commands] )) ||
+_roadmap__help__generate_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help generate commands' commands "$@"
+}
+(( $+functions[_roadmap__help__help_commands] )) ||
+_roadmap__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help help commands' commands "$@"
+}
+(( $+functions[_roadmap__help__init_commands] )) ||
+_roadmap__help__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help init commands' commands "$@"
+}
+(( $+functions[_roadmap__help__list_commands] )) ||
+_roadmap__help__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help list commands' commands "$@"
+}
+(( $+functions[_roadmap__help__next_commands] )) ||
+_roadmap__help__next_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help next commands' commands "$@"
+}
+(( $+functions[_roadmap__help__note_commands] )) ||
+_roadmap__help__note_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help note commands' commands "$@"
+}
+(( $+functions[_roadmap__help__priority_commands] )) ||
+_roadmap__help__priority_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help priority commands' commands "$@"
+}
+(( $+functions[_roadmap__help__report_commands] )) ||
+_roadmap__help__report_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help report commands' commands "$@"
+}
+(( $+functions[_roadmap__help__scan_commands] )) ||
+_roadmap__help__scan_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help scan commands' commands "$@"
+}
+(( $+functions[_roadmap__help__serve_commands] )) ||
+_roadmap__help__serve_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help serve commands' commands "$@"
+}
+(( $+functions[_roadmap__help__show_commands] )) ||
+_roadmap__help__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help show commands' commands "$@"
+}
+(( $+functions[_roadmap__help__status_commands] )) ||
+_roadmap__help__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help status commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task_commands] )) ||
+_roadmap__help__task_commands() {
+    local commands; commands=(
+'add:Ajouter une tâche à une phase' \
+'done:Marquer une tâche comme terminée' \
+'start:Marquer une tâche comme en cours' \
+'edit:Modifier une tâche' \
+'move:Déplacer une tâche vers une autre phase' \
+'blocks:Définir qu'\''une tâche en bloque une autre' \
+'unblocks:Retirer une dépendance' \
+    )
+    _describe -t commands 'roadmap help task commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__add_commands] )) ||
+_roadmap__help__task__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task add commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__blocks_commands] )) ||
+_roadmap__help__task__blocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task blocks commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__done_commands] )) ||
+_roadmap__help__task__done_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task done commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__edit_commands] )) ||
+_roadmap__help__task__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task edit commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__move_commands] )) ||
+_roadmap__help__task__move_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task move commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__start_commands] )) ||
+_roadmap__help__task__start_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task start commands' commands "$@"
+}
+(( $+functions[_roadmap__help__task__unblocks_commands] )) ||
+_roadmap__help__task__unblocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help task unblocks commands' commands "$@"
+}
+(( $+functions[_roadmap__help__tree_commands] )) ||
+_roadmap__help__tree_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help tree commands' commands "$@"
+}
+(( $+functions[_roadmap__help__ui_commands] )) ||
+_roadmap__help__ui_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help ui commands' commands "$@"
+}
+(( $+functions[_roadmap__help__update_commands] )) ||
+_roadmap__help__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help update commands' commands "$@"
+}
+(( $+functions[_roadmap__help__workflow_commands] )) ||
+_roadmap__help__workflow_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap help workflow commands' commands "$@"
+}
+(( $+functions[_roadmap__init_commands] )) ||
+_roadmap__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap init commands' commands "$@"
+}
+(( $+functions[_roadmap__list_commands] )) ||
+_roadmap__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap list commands' commands "$@"
+}
+(( $+functions[_roadmap__next_commands] )) ||
+_roadmap__next_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap next commands' commands "$@"
+}
+(( $+functions[_roadmap__note_commands] )) ||
+_roadmap__note_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap note commands' commands "$@"
+}
+(( $+functions[_roadmap__priority_commands] )) ||
+_roadmap__priority_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap priority commands' commands "$@"
+}
+(( $+functions[_roadmap__report_commands] )) ||
+_roadmap__report_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap report commands' commands "$@"
+}
+(( $+functions[_roadmap__scan_commands] )) ||
+_roadmap__scan_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap scan commands' commands "$@"
+}
+(( $+functions[_roadmap__serve_commands] )) ||
+_roadmap__serve_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap serve commands' commands "$@"
+}
+(( $+functions[_roadmap__show_commands] )) ||
+_roadmap__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap show commands' commands "$@"
+}
+(( $+functions[_roadmap__status_commands] )) ||
+_roadmap__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap status commands' commands "$@"
+}
+(( $+functions[_roadmap__task_commands] )) ||
+_roadmap__task_commands() {
+    local commands; commands=(
+'add:Ajouter une tâche à une phase' \
+'done:Marquer une tâche comme terminée' \
+'start:Marquer une tâche comme en cours' \
+'edit:Modifier une tâche' \
+'move:Déplacer une tâche vers une autre phase' \
+'blocks:Définir qu'\''une tâche en bloque une autre' \
+'unblocks:Retirer une dépendance' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'roadmap task commands' commands "$@"
+}
+(( $+functions[_roadmap__task__add_commands] )) ||
+_roadmap__task__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task add commands' commands "$@"
+}
+(( $+functions[_roadmap__task__blocks_commands] )) ||
+_roadmap__task__blocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task blocks commands' commands "$@"
+}
+(( $+functions[_roadmap__task__done_commands] )) ||
+_roadmap__task__done_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task done commands' commands "$@"
+}
+(( $+functions[_roadmap__task__edit_commands] )) ||
+_roadmap__task__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task edit commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help_commands] )) ||
+_roadmap__task__help_commands() {
+    local commands; commands=(
+'add:Ajouter une tâche à une phase' \
+'done:Marquer une tâche comme terminée' \
+'start:Marquer une tâche comme en cours' \
+'edit:Modifier une tâche' \
+'move:Déplacer une tâche vers une autre phase' \
+'blocks:Définir qu'\''une tâche en bloque une autre' \
+'unblocks:Retirer une dépendance' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'roadmap task help commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__add_commands] )) ||
+_roadmap__task__help__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help add commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__blocks_commands] )) ||
+_roadmap__task__help__blocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help blocks commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__done_commands] )) ||
+_roadmap__task__help__done_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help done commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__edit_commands] )) ||
+_roadmap__task__help__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help edit commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__help_commands] )) ||
+_roadmap__task__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help help commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__move_commands] )) ||
+_roadmap__task__help__move_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help move commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__start_commands] )) ||
+_roadmap__task__help__start_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help start commands' commands "$@"
+}
+(( $+functions[_roadmap__task__help__unblocks_commands] )) ||
+_roadmap__task__help__unblocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task help unblocks commands' commands "$@"
+}
+(( $+functions[_roadmap__task__move_commands] )) ||
+_roadmap__task__move_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task move commands' commands "$@"
+}
+(( $+functions[_roadmap__task__start_commands] )) ||
+_roadmap__task__start_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task start commands' commands "$@"
+}
+(( $+functions[_roadmap__task__unblocks_commands] )) ||
+_roadmap__task__unblocks_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap task unblocks commands' commands "$@"
+}
+(( $+functions[_roadmap__tree_commands] )) ||
+_roadmap__tree_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap tree commands' commands "$@"
+}
+(( $+functions[_roadmap__ui_commands] )) ||
+_roadmap__ui_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap ui commands' commands "$@"
+}
+(( $+functions[_roadmap__update_commands] )) ||
+_roadmap__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap update commands' commands "$@"
+}
+(( $+functions[_roadmap__workflow_commands] )) ||
+_roadmap__workflow_commands() {
+    local commands; commands=()
+    _describe -t commands 'roadmap workflow commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_roadmap" ]; then
+    _roadmap "$@"
+else
+    compdef _roadmap roadmap
+fi

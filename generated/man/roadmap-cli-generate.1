@@ -1,0 +1,31 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH generate 1  "generate " 
+.SH NAME
+generate \- Générer les fichiers man et completions shell
+.SH SYNOPSIS
+\fBgenerate\fR [\fB\-o\fR|\fB\-\-output\fR] [\fB\-h\fR|\fB\-\-help\fR] <\fIWHAT\fR> 
+.SH DESCRIPTION
+Générer les fichiers man et completions shell
+.SH OPTIONS
+.TP
+\fB\-o\fR, \fB\-\-output\fR \fI<OUTPUT>\fR [default: generated]
+Répertoire de sortie (défaut: ./generated)
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help (see a summary with \*(Aq\-h\*(Aq)
+.TP
+<\fIWHAT\fR>
+Type: man, completions, all
+.br
+
+.br
+\fIPossible values:\fR
+.RS 14
+.IP \(bu 2
+man: Pages man
+.IP \(bu 2
+completions: Completions shell (bash, zsh, fish)
+.IP \(bu 2
+all: Tout générer
+.RE

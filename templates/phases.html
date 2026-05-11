@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Liste des phases</h1>
+</div>
+
+<div class="table-container">
+    <table class="phases-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Phase</th>
+                <th>Nom</th>
+                <th>Priorite</th>
+                <th>Progression</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for phase in phases %}
+            <tr>
+                <td class="status-cell">
+                    {% if phase.status == "done" %}
+                    <span class="status-icon done" title="Termine">&#x2705;</span>
+                    {% else if phase.status == "in_progress" %}
+                    <span class="status-icon in-progress" title="En cours">&#x1F504;</span>
+                    {% else if phase.status == "blocked" %}
+                    <span class="status-icon blocked" title="Bloque">&#x1F6AB;</span>
+                    {% else %}
+                    <span class="status-icon pending" title="A faire">&#x2B1C;</span>
+                    {% endif %}
+                </td>
+                <td><a href="/phases/{{ phase.id }}" class="phase-link">{{ phase.id }}</a></td>
+                <td>{{ phase.name }}</td>
+                <td class="priority-cell">{{ phase.priority }}</td>
+                <td class="progress-cell">
+                    {% if phase.tasks_total > 0 %}
+                    <div class="mini-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ (phase.tasks_done as f32 / phase.tasks_total as f32 * 100.0) as i32 }}%"></div>
+                        </div>
+                        <span>{{ phase.tasks_done }}/{{ phase.tasks_total }}</span>
+                    </div>
+                    {% else %}
+                    <span class="no-tasks">-</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if phases.is_empty() %}
+<div class="empty-state">
+    <p>Aucune phase trouvee.</p>
+    <p>Creez une phase avec: <code>roadmap add &lt;id&gt; &lt;nom&gt;</code></p>
+</div>
+{% endif %}
+{% endblock %}

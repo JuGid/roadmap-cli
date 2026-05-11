@@ -366,6 +366,295 @@ roadmap workflow 9.1 --set testing
 
 ---
 
+### `roadmap task blocks`
+
+Déclare qu'une tâche bloque une autre tâche.
+
+```bash
+roadmap task blocks <task_id> <blocked_task_id>
+```
+
+**Exemple :**
+```bash
+roadmap task blocks 9.1 9.2
+# ✓ 9.1 bloque maintenant 9.2
+```
+
+La tâche bloquée apparaîtra avec ses dépendances dans `roadmap next` et `roadmap report`.
+
+---
+
+### `roadmap task unblocks`
+
+Retire une dépendance de blocage.
+
+```bash
+roadmap task unblocks <task_id> <blocked_task_id>
+```
+
+**Exemple :**
+```bash
+roadmap task unblocks 9.1 9.2
+# ✓ 9.1 ne bloque plus 9.2
+```
+
+---
+
+## Serveur web
+
+### `roadmap serve`
+
+Lance un serveur web avec interface Kanban.
+
+```bash
+roadmap serve [--port <port>] [--open]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--port`, `-p` | Port d'écoute (défaut: 7878) |
+| `--open` | Ouvrir dans le navigateur |
+
+**Exemples :**
+```bash
+roadmap serve                  # Démarre sur http://localhost:7878
+roadmap serve --port 8080      # Port personnalisé
+roadmap serve --open           # Ouvre automatiquement le navigateur
+```
+
+**Routes disponibles :**
+| Route | Description |
+|-------|-------------|
+| `/` | Vue Kanban (4 colonnes par statut) |
+| `/phases` | Liste des phases |
+| `/phases/{id}` | Détail d'une phase |
+| `/api/phases` | API JSON - toutes les phases |
+| `/api/phases/{id}` | API JSON - une phase |
+| `/api/report` | API JSON - rapport complet |
+
+---
+
+## Mise à jour
+
+### `roadmap update`
+
+Vérifie et installe les mises à jour depuis GitHub Releases.
+
+```bash
+roadmap update [--check]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--check` | Vérifier seulement (sans installer) |
+
+**Exemples :**
+```bash
+roadmap update          # Télécharge et installe la dernière version
+roadmap update --check  # Affiche si une mise à jour est disponible
+```
+
+---
+
+## Outils LLM
+
+### `roadmap next`
+
+Affiche les prochaines tâches à faire (filtre automatiquement les tâches bloquées).
+
+```bash
+roadmap next [--json]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--json` | Sortie JSON |
+
+**Sortie JSON :**
+```json
+[
+  {
+    "task_id": "9.2",
+    "task_name": "Métriques Prometheus",
+    "phase_id": "9",
+    "phase_name": "Observabilité",
+    "priority": 1,
+    "optional": false
+  }
+]
+```
+
+---
+
+### `roadmap context`
+
+Génère un contexte formaté pour les LLM (prompt système).
+
+```bash
+roadmap context [--include-done]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--include-done` | Inclure les tâches terminées |
+
+**Exemple de sortie :**
+```
+# Contexte Roadmap
+
+## État actuel
+- Phases: 6 (3 done, 1 in_progress, 2 pending)
+- Progression: 33%
+
+## Phase en cours: Observabilité (P1)
+- ✅ 9.1 Logs structurés Pino
+- ⬜ 9.2 Métriques Prometheus
+- ⬜ 9.3 Mode debug utilisateur
+
+## Prochaines tâches
+1. [9.2] Métriques Prometheus
+2. [9.3] Mode debug utilisateur
+```
+
+---
+
+## Intégrations code
+
+### `roadmap scan`
+
+Scanne le code source pour trouver les TODO, FIXME, HACK, etc.
+
+```bash
+roadmap scan [--glob <pattern>] [--create] [--phase <id>] [--hidden]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--glob` | Pattern de fichiers (défaut: `**/*.rs`) |
+| `--create` | Créer des tâches automatiquement |
+| `--phase` | Phase cible pour les tâches créées |
+| `--hidden` | Inclure les fichiers/dossiers cachés |
+
+**Exemples :**
+```bash
+roadmap scan --glob "**/*.ts"                    # Scanner TypeScript
+roadmap scan --glob "src/**/*.js" --create --phase 9  # Créer des tâches
+```
+
+**Marqueurs détectés :**
+`TODO`, `FIXME`, `HACK`, `BUG`, `XXX`, `OPTIMIZE`, `REFACTOR`
+
+---
+
+### `roadmap coverage`
+
+Analyse la couverture API (routes backend vs appels frontend).
+
+```bash
+roadmap coverage --backend <pattern> --frontend <pattern> [--prefix <prefix>] [--json]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--backend`, `-b` | Pattern glob fichiers backend |
+| `--frontend`, `-f` | Pattern glob fichiers frontend |
+| `--prefix` | Préfixe des routes API (défaut: `/api`) |
+| `--json` | Sortie JSON |
+
+**Exemples :**
+```bash
+# Next.js
+roadmap coverage -b "src/pages/api/**/*.ts" -f "src/**/*.tsx"
+
+# Express + React
+roadmap coverage -b "server/**/*.js" -f "client/src/**/*.js"
+
+# Sortie JSON
+roadmap coverage -b "api/**/*.ts" -f "app/**/*.tsx" --json
+```
+
+**Frameworks supportés :**
+- **Backend** : Express, Fastify, NestJS, Hono, Flask, FastAPI, Gin, Chi, Axum
+- **Frontend** : fetch, axios, $http, ky
+
+---
+
+### `roadmap changelog`
+
+Génère un changelog depuis les commits git.
+
+```bash
+roadmap changelog [--limit <n>] [--from <tag>] [--to <tag>] [--format <format>]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--limit` | Nombre de commits (défaut: 50) |
+| `--from` | Tag de départ (ex: v0.1.0) |
+| `--to` | Tag de fin (défaut: HEAD) |
+| `--format` | `markdown` ou `json` |
+
+**Exemples :**
+```bash
+roadmap changelog                           # 50 derniers commits
+roadmap changelog --from v0.1.0             # Depuis un tag
+roadmap changelog --from v0.1.0 --to v0.2.0 # Entre deux tags
+roadmap changelog --format json             # Sortie JSON
+```
+
+**Support Conventional Commits :**
+Les commits suivant le format `type(scope): message` sont automatiquement parsés et groupés par type (feat, fix, docs, etc.).
+
+---
+
+## Génération de documentation
+
+### `roadmap generate`
+
+Génère les pages man et les completions shell.
+
+```bash
+roadmap generate <TYPE> [--output <dir>]
+```
+
+| Argument | Description |
+|----------|-------------|
+| `man` | Générer les pages man uniquement |
+| `completions` | Générer les completions shell uniquement |
+| `all` | Générer tout |
+
+| Option | Description |
+|--------|-------------|
+| `--output`, `-o` | Répertoire de sortie (défaut: `./generated`) |
+
+**Exemples :**
+```bash
+roadmap generate all                    # Tout générer dans ./generated
+roadmap generate man -o ./docs          # Man pages dans ./docs/man
+roadmap generate completions            # Completions shell
+```
+
+**Installation des man pages :**
+```bash
+sudo cp generated/man/*.1 /usr/local/share/man/man1/
+sudo mandb   # Linux
+```
+
+**Installation des completions :**
+```bash
+# Bash
+sudo cp generated/completions/roadmap.bash /etc/bash_completion.d/
+
+# Zsh (ajouter à .zshrc: fpath=(~/.zsh/completions $fpath))
+mkdir -p ~/.zsh/completions
+cp generated/completions/_roadmap ~/.zsh/completions/
+
+# Fish
+cp generated/completions/roadmap.fish ~/.config/fish/completions/
+```
+
+---
+
 ## Options globales
 
 | Option | Description |

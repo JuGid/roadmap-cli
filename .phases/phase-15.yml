@@ -1,0 +1,61 @@
+id: '15'
+name: Déploiement & Infrastructure
+description: ''
+priority: 15
+status: done
+parent: null
+created_at: 2026-03-06
+updated_at: 2026-04-19
+workflow: null
+depends_on:
+- '12'
+tasks:
+- id: '15.1'
+  name: Docker + docker-compose
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '15.2'
+  name: CI/CD GitHub Actions
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '15.3'
+  name: Hébergement Scaleway/OVH (souverain)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '15.4'
+  name: Monitoring (Prometheus/Grafana)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '15.5'
+  name: Backups automatisés
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '15.6'
+  name: SSL/TLS Let's Encrypt
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+notes: []

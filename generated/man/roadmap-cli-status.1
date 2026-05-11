@@ -1,0 +1,19 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH status 1  "status " 
+.SH NAME
+status \- Changer le statut d\*(Aqune phase
+.SH SYNOPSIS
+\fBstatus\fR <\fB\-\-set\fR> [\fB\-h\fR|\fB\-\-help\fR] <\fIID\fR> 
+.SH DESCRIPTION
+Changer le statut d\*(Aqune phase
+.SH OPTIONS
+.TP
+\fB\-\-set\fR \fI<SET>\fR
+Nouveau statut (pending, in_progress, done, blocked)
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help
+.TP
+<\fIID\fR>
+ID de la phase

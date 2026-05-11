@@ -1,0 +1,71 @@
+id: '11'
+name: Auth & Multi-utilisateurs
+description: ''
+priority: 11
+status: in_progress
+parent: null
+created_at: 2026-03-06
+updated_at: 2026-04-19
+workflow: null
+depends_on:
+- '10'
+tasks:
+- id: '11.1'
+  name: Model User (email, password hash)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '11.2'
+  name: Inscription + validation email
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '11.3'
+  name: Login JWT + refresh tokens
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '11.4'
+  name: OAuth2 (Google, GitHub)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: true
+  completed_at: null
+- id: '11.5'
+  name: Sessions & middleware auth
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '11.6'
+  name: Auth API endpoints (register, login, refresh, forgot)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '11.7'
+  name: Middleware auth axum (JWT validation)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+notes:
+- date: 2026-04-19
+  content: L'auth est cote API Rust (JWT). Les pages login/register seront dans le frontend Next.js (phase 17).

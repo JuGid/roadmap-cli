@@ -1,0 +1,25 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH coverage 1  "coverage " 
+.SH NAME
+coverage \- Analyser la couverture API (routes backend vs appels frontend)
+.SH SYNOPSIS
+\fBcoverage\fR <\fB\-b\fR|\fB\-\-backend\fR> <\fB\-f\fR|\fB\-\-frontend\fR> [\fB\-\-prefix\fR] [\fB\-\-json\fR] [\fB\-h\fR|\fB\-\-help\fR] 
+.SH DESCRIPTION
+Analyser la couverture API (routes backend vs appels frontend)
+.SH OPTIONS
+.TP
+\fB\-b\fR, \fB\-\-backend\fR \fI<BACKEND>\fR
+Pattern glob pour les fichiers backend (ex: src/api/**/*.ts)
+.TP
+\fB\-f\fR, \fB\-\-frontend\fR \fI<FRONTEND>\fR
+Pattern glob pour les fichiers frontend (ex: src/app/**/*.tsx)
+.TP
+\fB\-\-prefix\fR \fI<PREFIX>\fR [default: /api]
+Préfixe des routes API (défaut: /api)
+.TP
+\fB\-\-json\fR
+Sortie JSON
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help

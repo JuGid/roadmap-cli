@@ -1,0 +1,45 @@
+id: '8'
+name: Auto-update
+description: ''
+priority: 7
+status: done
+parent: null
+created_at: 2026-03-05
+updated_at: 2026-03-05
+workflow: null
+tasks:
+- id: '8.1'
+  name: Commande update --check (vérifier version)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-05
+- id: '8.2'
+  name: Téléchargement binaire selon OS/arch
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-05
+- id: '8.3'
+  name: Remplacement binaire en place
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-05
+- id: '8.4'
+  name: Gestion des erreurs (permissions, réseau)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-05
+notes:
+- date: 2026-03-05
+  content: Utilise GitHub Releases API pour détecter et télécharger les nouvelles versions

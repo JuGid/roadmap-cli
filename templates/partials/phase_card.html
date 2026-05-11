@@ -1,0 +1,18 @@
+<a href="/phases/{{ phase.id }}" class="kanban-card" draggable="true" data-phase-id="{{ phase.id }}">
+    <div class="card-header">
+        <span class="card-id">Phase {{ phase.id }}</span>
+        <span class="card-priority" title="Priorite">P{{ phase.priority }}</span>
+    </div>
+    <div class="card-title">{{ phase.name }}</div>
+    {% if !phase.description.is_empty() %}
+    <div class="card-description">{{ phase.description }}</div>
+    {% endif %}
+    {% if phase.tasks_total > 0 %}
+    <div class="card-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ (phase.tasks_done as f32 / phase.tasks_total as f32 * 100.0) as i32 }}%"></div>
+        </div>
+        <span class="progress-text">{{ phase.tasks_done }}/{{ phase.tasks_total }} taches</span>
+    </div>
+    {% endif %}
+</a>

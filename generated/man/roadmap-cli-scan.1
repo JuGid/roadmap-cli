@@ -1,0 +1,25 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH scan 1  "scan " 
+.SH NAME
+scan \- Scanner le code pour trouver les TODO/FIXME
+.SH SYNOPSIS
+\fBscan\fR [\fB\-\-glob\fR] [\fB\-\-create\fR] [\fB\-\-phase\fR] [\fB\-\-hidden\fR] [\fB\-h\fR|\fB\-\-help\fR] 
+.SH DESCRIPTION
+Scanner le code pour trouver les TODO/FIXME
+.SH OPTIONS
+.TP
+\fB\-\-glob\fR \fI<GLOB>\fR [default: **/*.rs]
+Pattern glob pour filtrer les fichiers (défaut: **/*.rs)
+.TP
+\fB\-\-create\fR
+Créer des tâches automatiquement
+.TP
+\fB\-\-phase\fR \fI<PHASE>\fR
+Phase cible pour les tâches créées
+.TP
+\fB\-\-hidden\fR
+Inclure les répertoires cachés
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help

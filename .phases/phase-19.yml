@@ -1,0 +1,92 @@
+id: '19'
+name: Vues Canvas — Canvios (WebGL)
+description: Vues avancées avec le moteur WebGL Canvios (@siovos/canvios). Identité visuelle unique.
+priority: 17
+status: in_progress
+parent: null
+created_at: 2026-04-19
+updated_at: 2026-04-19
+workflow: null
+depends_on:
+- '18'
+tasks:
+- id: '19.1'
+  name: Intégrer @siovos/canvios dans roadmap-web (npm link ou monorepo)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - infra
+- id: '19.2'
+  name: Vue Timeline/Gantt WebGL — phases et tâches sur axe temporel
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+  tags:
+  - feature
+  - canvas
+- id: '19.3'
+  name: Vue Capacité (CAF) — charge par personne/équipe, surcharge visible
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - canvas
+- id: '19.4'
+  name: Vue Graph de dépendances — noeuds=tâches, arêtes=blocages, chemin critique
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - canvas
+- id: '19.5'
+  name: Zoom/pan fluide + viewport culling sur toutes les vues canvas
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - perf
+  - canvas
+- id: '19.6'
+  name: Interaction drag & drop sur les vues canvas (déplacer tâches, resize)
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+  - canvas
+- id: '19.7'
+  name: Export PNG/SVG des vues canvas
+  description: null
+  status: pending
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: null
+  tags:
+  - feature
+notes:
+- date: 2026-04-19
+  content: 'Moteur: @siovos/canvios (Pixi.js 8 WebGL2). POC validé à 50 FPS / 10k nodes. Batch rendering, quadtree spatial index, hybrid HTML overlay. Repo: siovos-canvas-engine.'
+- date: 2026-04-19
+  content: 'POC Gantt canvas: le rendu fonctionne mais pas de plus-value vs div CSS pour un Gantt. Le canvas est pertinent pour le graph de dependances (edges, routage, chemin critique). Refaire le Gantt en div, garder canvas pour graph.'

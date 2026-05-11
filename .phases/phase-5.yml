@@ -2,50 +2,131 @@ id: '5'
 name: Améliorations
 description: ''
 priority: 5
-status: pending
+status: done
 parent: null
 created_at: 2026-02-23
-updated_at: 2026-02-23
+updated_at: 2026-04-19
 workflow: null
 tasks:
 - id: '5.1'
   name: Recherche (search)
   description: null
-  status: pending
+  status: done
   parent: null
   workflow_stage: null
   optional: false
-  completed_at: null
+  completed_at: 2026-04-19
 - id: '5.2'
   name: Filtres (filter)
   description: null
-  status: pending
+  status: done
   parent: null
   workflow_stage: null
   optional: false
-  completed_at: null
+  completed_at: 2026-04-19
+  assignee: ''
+  due: ''
 - id: '5.3'
   name: Assignation (--assignee)
   description: null
-  status: pending
+  status: done
   parent: null
   workflow_stage: null
   optional: false
-  completed_at: null
+  completed_at: 2026-04-19
+  assignee: ''
+  due: ''
 - id: '5.4'
   name: Dépendances (--blocks)
   description: null
-  status: pending
+  status: done
   parent: null
   workflow_stage: null
   optional: false
-  completed_at: null
+  completed_at: 2026-03-06
 - id: '5.5'
   name: Due dates (--due)
   description: null
-  status: pending
+  status: done
   parent: null
   workflow_stage: null
   optional: false
-  completed_at: null
-notes: []
+  completed_at: 2026-04-19
+- id: '5.6'
+  name: Commande 'next' (prochaine tâche intelligente)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-06
+- id: '5.7'
+  name: Commande 'context' (dump optimisé LLM)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-06
+- id: '5.8'
+  name: Lien tâche → fichiers (--files)
+  description: null
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-03-06
+  files:
+  - src/main.rs
+  - src/phase.rs
+- id: '5.9'
+  name: YAML tolérant (serde default)
+  description: Champs optionnels avec serde(default) pour éviter les erreurs de parsing YAML manuel
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '5.10'
+  name: Batch task done/start
+  description: roadmap task done 25.1 25.2 25.3 en une commande
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '5.11'
+  name: Description sur task add (--desc)
+  description: roadmap task add 5 Nom --desc Description longue
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '5.12'
+  name: Auto-mark phase done
+  description: Phase passe automatiquement à done quand toutes les tâches non-optionnelles sont terminées
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '5.13'
+  name: Context filtré par phase (--phase)
+  description: roadmap context --phase 29 pour contexte LLM focalisé
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+- id: '5.14'
+  name: Historique des changements (log)
+  description: roadmap log — historique des changements (quand une tâche a été marquée done, etc.)
+  status: done
+  parent: null
+  workflow_stage: null
+  optional: false
+  completed_at: 2026-04-19
+notes:
+- date: 2026-03-06
+  content: 'Priorité: next + context pour workflow LLM optimal'
